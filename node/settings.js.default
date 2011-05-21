@@ -1,0 +1,10 @@
+{
+  "mysql": {
+    "user": "", 
+    "pass": ""
+  },
+  "twitter": {
+    "user": "", 
+    "pass": ""
+  }
+}
