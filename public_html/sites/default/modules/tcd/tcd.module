@@ -6,6 +6,40 @@
 
 include_once('tcd.features.inc');
 
+
+/**
+ * Implement hook_node_view().
+ */
+function tcd_menu() {
+  $items['api/follow'] = array(
+    'page callback' => 'tcd_follow_json',
+    'access callback' => true,
+  );
+  $items['api/add_tweets'] = array(
+    'page callback' => 'tcd_add_tweets_json',
+    'access callback' => true,
+  );
+  return $items;
+}
+
+function tcd_follow_json() {
+  drupal_add_http_header('Content-Type', 'application/json; charset=utf-8');
+
+  print drupal_json_encode(array(
+    'last-modified' => time(),
+    'sites' => array(
+      '1' => array('drewish'),
+      '2' => array('frankcarey'),
+    ),
+  ));
+  return NULL;
+}
+
+function tcd_add_tweets_json() {
+  dsm($GLOBALS);
+  return '';
+}
+
 /**
  * Implement hook_node_view().
  */
