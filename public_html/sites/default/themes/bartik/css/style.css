@@ -1746,3 +1746,7 @@ div.admin-panel .description {
   height: 50px;
 }
 .page-node #block-system-main {text-align:center;}
+
+#user-login-form-register-page .item-list {
+  display: none;
+}
