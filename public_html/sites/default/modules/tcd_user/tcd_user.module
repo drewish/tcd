@@ -16,6 +16,7 @@ function tcd_user_form_user_register_form_alter(&$form, &$form_state) {
   $form['account']['pass']['#description'] = '';
   $form['account']['pass']['#type'] = 'password';
   $form['account']['pass']['#title'] = 'Password';
+  $form['account']['pass']['#size'] = 60;
   $form['account']['mail']['#title'] = 'Email';
   $form['actions']['submit']['#value'] = 'Sign Up';
   // Attached our own js
