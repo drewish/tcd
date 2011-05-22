@@ -154,5 +154,5 @@ function tcd_node_view($node, $view_mode, $langcode) {
  * Implement hook_node_delete().
  */
 function tcd_node_delete($node) {
-  db_query('DELETE FROM {tcd_tweets} WHERE tst.site_nid = :nid', array(':nid' => $node->nid));
+  db_query('DELETE FROM {tcd_tweets} WHERE site_nid = :nid', array(':nid' => $node->nid));
 }
