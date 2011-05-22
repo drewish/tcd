@@ -1,16 +1,32 @@
 (function($){
-  var updateTweet = function (text) {
-    var clean = Drupal.checkPlain(text);
-    $('.tweet-text').text(clean);
-    $("meta[property='og:description']").text(clean);
-  };
+  var
+    socket,
+    tweets,
+    updateTweet = function (obj) {
+      var clean = Drupal.checkPlain(obj.text);
+      $('.tweet-text').text(clean).show();
+      $("meta[property='og:description']").text(clean);
+    };
 
-  if (typeof io !== 'undefined' && typeof io.Socket !== 'undefined') {
-    var socket = new io.Socket(null, {port: 8080, rememberTransport: false});
-    socket.connect();
-    socket.on('message', function(res){
-      updateTweet(res.data.text);
-    }); 
+  $.ready($('.tweet-text.mode-random').hide());
+
+  Drupal.behaviors.tcdTweets = {
+    attach: function (context, settings) {
+      $('body').once('tcd').each(function() {
+        if (typeof io !== 'undefined' && typeof io.Socket !== 'undefined') {
+          socket = new io.Socket(null, {port: 8080, rememberTransport: false});
+          socket.connect();
+          socket.on('message', function(res){
+            updateTweet(res.data);
+          });
+        }
+
+        if (Drupal.settings['twitter'] && Drupal.settings.twitter['tweets']) {
+          tweets = Drupal.settings.twitter.tweets
+          updateTweet(tweets[Math.floor(Math.random() * tweets.length)]);
+        }
+      })
+    }
   }
 
 })(jQuery);
