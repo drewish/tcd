@@ -1,0 +1,64 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function tcd_schema() {
+  $schema['tcd_tweets'] = array(
+    'description' => 'Individual tweets.', 
+    'fields' => array(
+      'twitter_id' => array(
+        'description' => t("Unique identifier for each {twitter} post."),
+        'type' => 'numeric',
+        'unsigned' => TRUE,
+        'precision' => 20,
+        'scale' => 0,
+        'not null' => TRUE,
+        'default' => 0
+      ),
+      'screen_name' => array(
+        'description' => t("Screen Name of the {twitter_account} user."),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => ''
+      ),
+      'created_time' => array(
+        'description' => t("A duplicate of {twitter}.created_at in UNIX timestamp format."),
+        'type' => 'int',
+        'not null' => TRUE
+      ),
+      'text' => array(
+        'description' => t("The text of the {twitter} post."),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE
+      ),
+    ),
+    'indexes' => array('screen_name' => array('screen_name')),
+    'primary key' => array('twitter_id'),
+  );
+  $schema['tcd_site_tweets'] = array(
+    'description' => 'Individual tweets.', 
+    'fields' => array(
+      'twitter_id' => array(
+        'description' => t("Unique identifier for each {twitter} post."),
+        'type' => 'numeric',
+        'unsigned' => TRUE,
+        'precision' => 20,
+        'scale' => 0,
+        'not null' => TRUE,
+        'default' => 0
+      ),
+      'site_nid' => array(
+        'description' => t("Unique identifier for each site node."),
+        'type' => 'int', 
+        'unsigned' => TRUE, 
+        'not null' => TRUE, 
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('twitter_id', 'site_nid'),
+  );
+  return $schema;
+}

@@ -49,7 +49,9 @@ function tcd_follow_json() {
 }
 
 function tcd_add_tweets_json() {
-  return drupal_json_encode($_POST);
+//  dd($_POST);
+  $data = drupal_json_decode($_POST['json']);
+  return drupal_json_encode($data);
 }
 
 /**

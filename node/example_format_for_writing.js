@@ -1,6 +1,12 @@
 {
-  tweet_id : 0,
-  text : 'Tweet Content',
-  screen_name : 'twitterscreenname',
-  sites : [1,2,3] // array of sites to post this to...
+  '123434': {
+    text : 'Tweet Content',
+    screen_name : 'twitterscreenname',
+    sites : [1,2,3]
+  },
+  '567890': {
+    text : 'Different tweet Content',
+    screen_name : 'diffTwitterName',
+    sites : [3]
+  }
 }
