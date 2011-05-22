@@ -627,3 +627,40 @@ div.ctools-modal-content {
   background-color: #000!important;
 }
 /* @end */
+
+
+/** Override that obnoxious float on throbber. **/
+#panels-dnd-main .progress-disabled {
+  float: none;
+}
+
+#panels-dnd-main .progress-disabled + .ajax-progress {
+  float: right;
+  position: relative;
+  top: -2em;
+}
+
+/** Override that obnoxious float on throbber. **/
+.panels-categories-box .progress-disabled {
+  float: none;
+}
+
+.panels-categories-box .progress-disabled + .ajax-progress {
+  float: right;
+  position: relative;
+  top: -2em;
+  margin-bottom: -2em;
+}
+
+.panels-section-columns .progress-disabled {
+  display: block;
+  float: left;
+}
+
+.panels-section-columns .ajax-progress .throbber {
+  float: right;
+  position: relative;
+  top: -2em;
+  margin-bottom: -2em;
+}
+

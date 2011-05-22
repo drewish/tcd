@@ -1788,6 +1788,7 @@ function panels_flexible_reuse_form_validate(&$form, &$form_state) {
  * Test for #machine_name type to see if an export exists.
  */
 function panels_flexible_edit_name_exists($name, $element, &$form_state) {
+  ctools_include('export');
   $plugin = $form_state['plugin'];
 
   return (empty($form_state['item']->export_ui_allow_overwrite) && ctools_export_crud_load($plugin['schema'], $name));

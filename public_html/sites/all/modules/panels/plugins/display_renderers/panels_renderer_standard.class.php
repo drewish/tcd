@@ -433,7 +433,7 @@ class panels_renderer_standard {
           $url = base_path() . $filename;
 //        }
 
-        $this->prefix .= '<link type="text/css" rel="stylesheet" media="' . $media . '" href="' . $url . '" />'."\n";
+        $this->prefix .= '<link type="text/css" rel="stylesheet" href="' . $url . '" />'."\n";
         break;
     }
   }

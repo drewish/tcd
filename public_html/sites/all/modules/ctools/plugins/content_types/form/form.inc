@@ -35,7 +35,8 @@ function ctools_form_content_type_render($subtype, $conf, $panel_args, &$context
   }
   else {
     $block->title = t('Form');
-    $block->content = t('Form goes here.');
+    //$form = drupal_get_form("article_node_form");
+    //$block->content = drupal_render_form("article_node_form", $form);
     $block->delta   = 'unknown';
   }
 

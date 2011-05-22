@@ -210,13 +210,16 @@ class panels_layouts_ui extends ctools_export_ui {
 
     $type = !empty($this->builders[$item->plugin]) ? $this->builders[$item->plugin]['title'] : t('Broken/missing plugin');
     $category = $item->category ? check_plain($item->category) : t('Miscellaneous');
+
+    $ops = theme('links__ctools_dropbutton', array('links' => $operations, 'attributes' => array('class' => array('links', 'inline'))));
+
     $this->rows[$item->name] = array(
       'data' => array(
         array('data' => check_plain($type), 'class' => array('ctools-export-ui-type')),
         array('data' => check_plain($item->name), 'class' => array('ctools-export-ui-name')),
         array('data' => check_plain($item->admin_title), 'class' => array('ctools-export-ui-title')),
         array('data' => $category, 'class' => array('ctools-export-ui-category')),
-        array('data' => theme('links', array('links' => $operations)), 'class' => array('ctools-export-ui-operations')),
+        array('data' => $ops, 'class' => array('ctools-export-ui-operations')),
       ),
       'title' => check_plain($item->admin_description),
       'class' => array(!empty($item->disabled) ? 'ctools-export-ui-disabled' : 'ctools-export-ui-enabled'),
