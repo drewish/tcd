@@ -85,11 +85,10 @@ function tcd_node_view($node, $view_mode, $langcode) {
 
     // Add some basic default settings. We should also add some validation since some of these fields aren't required.
     $user_name = $node->field_twitter_user[LANGUAGE_NONE][0]['value'];
-    $hash_tag =$node->field_twitter_tag[LANGUAGE_NONE][0]['value'];
+    $hash_tag = isset($node->field_twitter_tag[LANGUAGE_NONE][0]['value']) ? $node->field_twitter_tag[LANGUAGE_NONE][0]['value'] : '';
     $type = $node->field_mode[LANGUAGE_NONE][0]['value'];
 
-    drupal_add_js(array('twitter' => array('userName' => $user_name, 'hashTag' => $hash_tag, 'tweetType' => $type)), 'setting');
-    drupal_add_js(drupal_get_path('module', 'tcd') . '/socket.io.min.js');    
+    drupal_add_js(array('twitter' => array('userName' => $user_name, 'hashTag' => $hash_tag, 'tweetType' => $type, 'tweets' => $tweets)), 'setting');
     drupal_add_js(drupal_get_path('module', 'tcd') . '/tcd_tweets.js');    
   } 
 }
