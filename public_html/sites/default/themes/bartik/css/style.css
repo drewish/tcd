@@ -558,6 +558,10 @@ h1#site-name,
  background: url(../images/signup_signin_bg.jpg) no-repeat 20px -19px;
   height: 766px;
 }
+
+.page-home #main {
+  margin-top:0;
+}
 /* ----------------- Featured ----------------- */
 
 #featured {
@@ -1768,6 +1772,8 @@ div.admin-panel .description {
   display: none;
 }
 
+.page-home #page-title {display:none;}
+
 .page-home .view-tweets .views-row {
   background: url(../images/panel.png) no-repeat 0 0;
   display:block;
@@ -1776,9 +1782,11 @@ div.admin-panel .description {
   width:495px;
 }
 
+.page-home font {font-family:Myriad Pro}
+
 .page-home .views-field-title {
-  font-size: 18px;
-  padding: 25px 0;
+  font-size:40px;
+  padding: 11px 0;
   text-align: center;
 }
 
@@ -1795,4 +1803,16 @@ div.admin-panel .description {
 
 #main-menu.open #main-menu-links{
   top: 400px;
+  font-size:20px;
+} 
+
+.page-home .views-field-screen-name{ margin-top:10px; margin-left:222px; }
+.page-home .views-field-created-time {
+  float: right;
+  margin-right: 92px;
+  margin-top:-20px;
 }
+
+.page-home .pane-views-tweets-block h2,
+.page-home .pane-1 {display: none;}  
+
