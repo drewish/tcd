@@ -5,21 +5,12 @@
     $("meta[property='og:description']").text(clean);
   };
 
-  Drupal.behaviors.tcdTweets = {
-    attach: function (context, settings) {
-
-    }
-  };
-
   if (typeof io !== 'undefined' && typeof io.Socket !== 'undefined') {
     var socket = new io.Socket(null, {port: 8080, rememberTransport: false});
     socket.connect();
-    socket.on('message', function(obj){
-      console.log(arguments);
-    });
-    socket.on('connect', function(obj){
-      console.log(arguments)
-    });
+    socket.on('message', function(res){
+      updateTweet(res.data.text);
+    }); 
   }
 
 })(jQuery);

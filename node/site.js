@@ -15,6 +15,7 @@ Site.prototype = {
   format_data : function(tweet_data){
     var data = {};
     data.text = tweet_data.text.replace("#" + this.normalized_hash_tag(),'');
+    data.text = this.add_image_tags(data.text);
     data.tweet_id = tweet_data.id_str;
     data.created_at = new Date(tweet_data.created_at).getTime();
     if(typeof(tweet_data.user) != "undefined"){
@@ -68,6 +69,22 @@ Site.prototype = {
   // normalize hash tag by only including alphanumeric characters
   normalized_hash_tag : function(){
     return this.hash_tag.replace(/[^a-z0-9_\-]/ig,'');
+  },
+  add_image_tags : function(text){
+    var image_sites = [
+      'yfrog',
+      'twitpic',
+      'lockerz',
+      'mobypicture',
+      'twitgoo',
+      'posterous',
+      'img.ly',
+      'mlkshk.com'
+    ]
+    image_sites.forEach(function(site){
+      text = text.replace(new RegExp(" (http.*" + site.replace(/\./,'\.') + "[^\s]+)( |$)"),' <img src="$1" /> ');
+    })
+    return text;
   }
 }
 exports.Site = Site;

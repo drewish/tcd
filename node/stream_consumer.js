@@ -131,7 +131,7 @@ StreamConsumer.prototype = {
       // persist to mysql
       AddTweet.save_tweet(this.tweet_data);
       // and send this to any currently connected clients
-      this.push_socket.push_data(this.tweet_data);
+      this.push_socket.push_data(this.tweet_data[this.tweet_data.length - 1]);
     
       this.tweet_data = [];
     }
