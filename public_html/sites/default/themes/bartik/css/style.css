@@ -1837,6 +1837,11 @@ div.admin-panel .description {
 .page-home tr, .page-home td {border-bottom: none;}
 .page-home tr td, .page-home tr th {border:none;}
 
+.page-home .region {
+  background-color:#ccc; 
+  border-radius:15px; 
+  padding-top:10px;
+}
 
 .share-links {
   padding-top: 50px;
