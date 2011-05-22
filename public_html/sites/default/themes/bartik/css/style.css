@@ -322,9 +322,22 @@ h1#site-name,
   width:230px;
 }
 
-.page-home #site-name {margin-top:50px;}
+.page-home #site-name { 
+    height: 113px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 90px;
+    width: 247px;}
 
 #site-name a {
+  background: url(../images/logo.png) no-repeat 0 0;
+  display: block;
+  height: 113px;
+  margin: 0;
+  text-indent: -9999em;
+  width: 247px;
   font-weight: normal;
 }
 #site-slogan {
@@ -1837,7 +1850,7 @@ div.admin-panel .description {
 .page-home tr, .page-home td {border-bottom: none;}
 .page-home tr td, .page-home tr th {border:none;}
 
-.page-home .region {
+.page-home .region #block-block-2{
   background-color:#ccc; 
   border-radius:15px; 
   padding-top:10px;
