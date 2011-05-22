@@ -78,7 +78,7 @@ function tcd_add_tweets_json() {
 function tcd_node_view($node, $view_mode, $langcode) {
   if ($node->type == 'site') {
     $tweets = db_query_range('SELECT tt.* FROM {tcd_tweets} tt 
-      WHERE tst.site_nid = :nid ORDER BY tt.created_time DESC', 0, 100, array(':nid' => $node->nid))
+      WHERE tt.site_nid = :nid ORDER BY tt.created_time DESC', 0, 100, array(':nid' => $node->nid))
       ->fetchAllAssoc('twitter_id', PDO::FETCH_ASSOC);
 
     // Add some basic default settings. We should also add some validation since some of these fields aren't required.
