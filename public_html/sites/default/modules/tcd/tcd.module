@@ -36,12 +36,15 @@ function tcd_ajax_deliver($json) {
 }
 
 function tcd_follow_json() {
+  $follows = array();
+  $last_changed = 0;
+  foreach (node_load_multiple(array(), array('type' => 'site')) as $node) {
+    $last_changed = max($node->changed, $last_changed);
+    $follows[$node->nid] = preg_split("/[\s,]+/", $node->field_twitter_user['und'][0]['value']);
+  }
   return drupal_json_encode(array(
-    'last-modified' => time(),
-    'sites' => array(
-      '1' => array('drewish'),
-      '2' => array('frankcarey'),
-    ),
+    'last-modified' => $last_changed,
+    'sites' => $follows,
   ));
 }
 
