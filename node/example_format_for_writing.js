@@ -1,12 +1,15 @@
-{
-  '123434': {
-    text : 'Tweet Content',
-    screen_name : 'twitterscreenname',
-    sites : [1,2,3]
-  },
-  '567890': {
-    text : 'Different tweet Content',
-    screen_name : 'diffTwitterName',
-    sites : [3]
+[
+  {
+    "text":"final test",
+    "tweet_id":"72141579296583680",
+    "created_at":1306034867000,
+    "screen_name":"dlangevin",
+    "site_ids":["1"]
+  },{
+    "text":"final test",
+    "tweet_id":"72141579296583680",
+    "created_at":1306034867000,
+    "screen_name":"dlangevin",
+    "site_ids":["1"]
   }
-}
+]

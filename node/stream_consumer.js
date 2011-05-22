@@ -114,8 +114,7 @@ StreamConsumer.prototype = {
   // add a tweet to the 
   add_tweet : function(tweet_data){
     var self = this;
-    this.tweet_data.push(tweet_data);
-      //this.format_data(tweet_data));
+    this.tweet_data.push(this.format_data(tweet_data));
     if(this.tweet_data.length > this.max_queue_length){
       var post_data = querystring.stringify({json : JSON.stringify(this.tweet_data)});
       var options = {
