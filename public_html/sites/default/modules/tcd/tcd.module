@@ -21,7 +21,6 @@ function tcd_menu() {
     'delivery callback' => 'tcd_ajax_deliver',
     'access callback' => true,
   );
-
   return $items;
 }
 
@@ -54,9 +53,11 @@ function tcd_follow_json() {
  */
 function tcd_add_tweets_json() {
   $data = drupal_json_decode($_POST['json']);
-  foreach ($data as $tweet_id => $tweet) {
+  dd($data);
+  foreach ($data as $tweet) {
+    dd($tweet_id);
     db_merge('tcd_tweets')
-      ->key(array('twitter_id' => $tweet_id))
+      ->key(array('twitter_id' => $tweet['tweet_id']))
       ->fields(array(
           'screen_name' => $tweet['text'],
           'created_time' => $tweet['created_at'] / 1000,
