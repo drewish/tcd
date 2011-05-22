@@ -310,7 +310,7 @@ ul.tips {
 h1#site-name,
 #site-name{
   background: url(../images/logo.png) no-repeat 0 0;
-  margin: 0 400px;
+  margin: 0 375px;
   text-indent: -999em;
   height: 43px;
   width:230px;
@@ -590,8 +590,10 @@ h1#site-name,
   margin-top: 10px;
 }
 h1#page-title {
-  font-size: 2em;
   line-height: 1;
+  text-align:center;
+  font-family: 'veracruz-serial', Helvetica, Arial, sans-serif; 
+  font-size:2em;
 }
 #content h2 {
   margin-bottom: 2px;
@@ -1703,3 +1705,5 @@ div.admin-panel .description {
 
 .page-node #main-menu,
 .page-node #breadcrumb {display:none;}
+
+.page-node #block-system-main {text-align:center;}

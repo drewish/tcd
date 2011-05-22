@@ -87,10 +87,24 @@
 ?>
 <div id="page-wrapper"><div id="page">
 
-  <div id="header" class="<?php print $secondary_menu ? 'with-secondary-menu': 'without-secondary-menu'; ?>"><div class="section clearfix">
 
-   
+  <?php if ($messages): ?>
+    <div id="messages"><div class="section clearfix">
+      <?php print $messages; ?>
+    </div></div> <!-- /.section, /#messages -->
+  <?php endif; ?>
 
+  <?php if ($page['featured']): ?>
+    <div id="featured"><div class="section clearfix">
+      <?php print render($page['featured']); ?>
+    </div></div> <!-- /.section, /#featured -->
+  <?php endif; ?>
+
+  <div id="main-wrapper" class="clearfix"><div id="main" class="clearfix">
+  
+      <div id="header" class="<?php print $secondary_menu ? 'with-secondary-menu': 'without-secondary-menu'; ?>"><div class="section clearfix">
+
+    
     <?php if ($site_name || $site_slogan): ?>
       <div id="name-and-slogan"<?php if ($hide_site_name && $hide_site_slogan) { print ' class="element-invisible"'; } ?>>
 
@@ -108,7 +122,7 @@
           <?php endif; ?>
         <?php endif; ?>
 
-       
+        
 
       </div> <!-- /#name-and-slogan -->
     <?php endif; ?>
@@ -150,20 +164,6 @@
     <?php endif; ?>
 
   </div></div> <!-- /.section, /#header -->
-
-  <?php if ($messages): ?>
-    <div id="messages"><div class="section clearfix">
-      <?php print $messages; ?>
-    </div></div> <!-- /.section, /#messages -->
-  <?php endif; ?>
-
-  <?php if ($page['featured']): ?>
-    <div id="featured"><div class="section clearfix">
-      <?php print render($page['featured']); ?>
-    </div></div> <!-- /.section, /#featured -->
-  <?php endif; ?>
-
-  <div id="main-wrapper" class="clearfix"><div id="main" class="clearfix">
 
     <?php if ($breadcrumb): ?>
       <div id="breadcrumb"><?php print $breadcrumb; ?></div>
