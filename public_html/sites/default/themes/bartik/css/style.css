@@ -1825,3 +1825,18 @@ div.admin-panel .description {
 
 .page-home tr, .page-home td {border-bottom: none;}
 .page-home tr td, .page-home tr th {border:none;}
+
+
+.share-links {
+  padding-top: 50px;
+}
+
+.twitter-link {
+  float: left;
+  padding-left: 259px;
+}
+
+.facebook-link {
+  float: right;
+  width: 381px;
+}
