@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'veracruz-serial';
+    src: url('veracruz-serial.eot');
+    src: url('veracruz-serial.eot?#iefix') format('embedded-opentype'),
+         url('veracruz-serial.woff') format('woff'),
+         url('veracruz-serial.ttf') format('truetype'),
+         url('veracruz-serial.svg#veracruz-serial') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'veracruz-serial';
+}

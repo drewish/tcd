@@ -105,18 +105,37 @@ function tcd_node_view($node, $view_mode, $langcode) {
     $tweets = db_query_range('SELECT tt.* FROM {tcd_tweets} tt 
       WHERE tt.site_nid = :nid ORDER BY tt.created_time DESC', 0, 100, array(':nid' => $node->nid))
       ->fetchAllAssoc('twitter_id', PDO::FETCH_ASSOC);
+    // Pull the newest tweet or FALSE if it's an empty array.
+    $newest_tweet = reset($tweets);
 
     // Add some basic default settings. We should also add some validation since some of these fields aren't required.
     $user_name = $node->field_twitter_user[LANGUAGE_NONE][0]['value'];
     $hash_tag = isset($node->field_twitter_tag[LANGUAGE_NONE][0]['value']) ? $node->field_twitter_tag[LANGUAGE_NONE][0]['value'] : '';
     $type = $node->field_mode[LANGUAGE_NONE][0]['value'];
-    foreach($tweets as $tweet) {
-      $node->tweet_field = $tweet;
-      // We only want the 1st tweet in the array
-      break;
-    }
+    $node->tweet_field = $newest_tweet;
     drupal_add_js(array('twitter' => array('userName' => $user_name, 'hashTag' => $hash_tag, 'tweetType' => $type, 'tweets' => $tweets)), 'setting');
+    drupal_add_js(drupal_get_path('module', 'tcd') . '/socket.io.min.js');
     drupal_add_js(drupal_get_path('module', 'tcd') . '/tcd_tweets.js');
+
+    // Kick out Open graph tags.
+    if ('full' == $view_mode) {
+      $tags = array(
+        'og:title' => $node->title,
+        'og:type' => 'website',
+        'og:url' => url('node/' . $node->nid),
+        'og:description' => empty($newest_tweet['text']) ? '' : $newest_tweet['text'],
+      );
+      foreach ($tags as $name => $content) {
+        $element = array(
+          '#tag' => 'meta',
+          '#attributes' => array(
+            'property' => $name,
+            'content' => $content,
+          ),
+        );
+        drupal_add_html_head($element, "opengraph_meta_$name");
+      }
+    }
   } 
 }
 
