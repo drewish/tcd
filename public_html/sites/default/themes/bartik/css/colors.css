@@ -21,14 +21,14 @@ body.overlay {
 }
 
 a {
-  color: #0071B3;
+  color: #336666;
 }
 a:hover,
 a:focus {
-  color: #018fe2;
+  color: #336666;
 }
 a:active {
-  color: #23aeff;
+  color: #336666;
 }
 .sidebar .block {
   background-color: #f6f6f2;
