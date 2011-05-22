@@ -71,7 +71,7 @@ function tcd_add_tweets_json() {
 }
 
 function tcd_form_site_node_form_alter(&$form, &$form_state, $form_id) {
-  $form['field_color_background']['#attached'] = array(
+  $form['field_font_color']['#attached'] = array(
     // Add Farbtastic color picker.
     'library' => array(
       array('system', 'farbtastic'),
@@ -95,6 +95,7 @@ function tcd_form_site_node_form_alter(&$form, &$form_state, $form_id) {
     //   ),
     ),
   );
+  $form['field_font_color']['#suffix'] = '<div id="colorpicker"></div>';
 }
 
 /**

@@ -10,74 +10,6 @@
 function tcd_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-site-field_color_background'
-  $fields['node-site-field_color_background'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_color_background',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '16',
-      ),
-      'translatable' => '1',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'site',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 5,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_color_background',
-      'label' => 'Background Color',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '12',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '1',
-      ),
-    ),
-  );
-
   // Exported field: 'node-site-field_font'
   $fields['node-site-field_font'] = array(
     'field_config' => array(
@@ -99,6 +31,7 @@ function tcd_field_default_fields() {
           'futura' => 'Futura',
           'katy berry' => 'Katy Berry',
           'lobster' => 'Lobster',
+          'museo slab' => 'Museo Slab',
           'veracruz-serial' => 'Veracruz-Serial',
         ),
         'allowed_values_function' => '',
@@ -108,11 +41,7 @@ function tcd_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'site',
-      'default_value' => array(
-        0 => array(
-          'value' => 'Veracruz-Serial',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -142,7 +71,79 @@ function tcd_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '0',
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  // Exported field: 'node-site-field_font_color'
+  $fields['node-site-field_font_color'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_font_color',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '10',
+      ),
+      'translatable' => '1',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'site',
+      'default_value' => array(
+        0 => array(
+          'value' => '#000000',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 5,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_font_color',
+      'label' => 'Font Color',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '10',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '1',
       ),
     ),
   );
@@ -351,8 +352,8 @@ function tcd_field_default_fields() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Background Color');
   t('Font');
+  t('Font Color');
   t('Hash Tag');
   t('If you provide a hash tag, only tweets containing it will be posted to the site.');
   t('Tweets from this Twitter user will be used to populate the site.');
