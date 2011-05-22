@@ -39,7 +39,8 @@ function tcd_user_form_user_register_form_alter(&$form, &$form_state) {
 
 function tcd_user_form_user_login_block_alter(&$form, &$form_state) {
   // Remove all the description text.
-  $form['name']['#attributes']['placeholder'] = 'username';  
+  $form['name']['#attributes']['placeholder'] = 'username';
+  $form['actions']['submit']['#value'] = '';
 }
 
 function tcd_user_register() {
