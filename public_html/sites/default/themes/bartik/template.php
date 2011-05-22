@@ -72,6 +72,13 @@ function bartik_process_page(&$variables) {
     // Make sure the shortcut link is the first item in title_suffix.
     $variables['title_suffix']['add_or_remove_shortcut']['#weight'] = -100;
   }
+  
+  global $user;
+  if (drupal_is_front_page() && ($user->uid > 0)) {
+    module_load_include('inc', 'node', 'node.pages');
+    $variables['side_node'] =  render(node_add('site')); 
+    drupal_add_js(drupal_get_path('theme', 'bartik') . '/dashboard.js');    
+  }
 }
 
 /**

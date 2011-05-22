@@ -1785,3 +1785,14 @@ div.admin-panel .description {
 .page-home .views-field-text {
   text-align:center;
 } 
+
+#main-menu.open {
+  height: 500px;
+  position: absolute;
+  width: 100%;
+  background-color: #5d6169;
+}
+
+#main-menu.open #main-menu-links{
+  top: 400px;
+}
