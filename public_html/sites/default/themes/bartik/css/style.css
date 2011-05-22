@@ -1782,16 +1782,23 @@ div.admin-panel .description {
   width:495px;
 }
 
-.page-home font {font-family:Myriad Pro}
 
 .page-home .views-field-title {
   font-size:40px;
+  font-family:MyriadPro;
   padding: 11px 0;
   text-align: center;
 }
 
+.page-home table .views-field-title {
+  float:left;
+  font-size:30px;
+  padding-right:20px;  
+}
+
 .page-home .views-field-text {
   text-align:center;
+  font-family:MyriadPro;
 } 
 
 #main-menu.open {
@@ -1806,13 +1813,15 @@ div.admin-panel .description {
   font-size:20px;
 } 
 
-.page-home .views-field-screen-name{ margin-top:10px; margin-left:222px; }
+.page-home .views-field-screen-name{ margin-top:10px; margin-left:150px; }
 .page-home .views-field-created-time {
   float: right;
   margin-right: 92px;
-  margin-top:-20px;
+  margin-top:-21px;
 }
 
 .page-home .pane-views-tweets-block h2,
 .page-home .pane-1 {display: none;}  
 
+.page-home tr, .page-home td {border-bottom: none;}
+.page-home tr td, .page-home tr th {border:none;}
