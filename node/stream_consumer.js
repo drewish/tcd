@@ -38,7 +38,7 @@ StreamConsumer.prototype = {
   start_server : function(){
     var self = this;
     console.log("Starting Server with " + this.user_ids.join(", "));
-    this.server = TwitterClient.stream('user', {track : this.user_ids, with : "user"}, function(stream) {
+    this.server = TwitterClient.stream('statuses/filter', {"follow" : this.user_ids.join(',')}, function(stream) {
       stream.on('data', function (data) {
         // get some data
         if(data.text){
