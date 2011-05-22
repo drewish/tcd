@@ -27,7 +27,7 @@ StreamConsumer.prototype = {
     var self = this;
     this.running = true;
     // set up the timer, we will check for new sites every 30 seconds
-    this.get_site_interval = setInterval(function(){self.get_sites()}, 30000);
+    this.get_site_interval = setInterval(function(){self.get_sites()}, 5000);
     this.get_sites();
   },
   // method to exit gracefully
@@ -124,6 +124,8 @@ StreamConsumer.prototype = {
     this.sites_as_array().forEach(function(site){
       // includes test for hash tags
       if(site.is_valid(tweet_data)){
+        console.log("ADDING TWEET");
+        console.log(tweet_data);
         self.tweet_data.push(site.format_data(tweet_data))
       }
     })

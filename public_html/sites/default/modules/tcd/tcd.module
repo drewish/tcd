@@ -119,10 +119,14 @@ function tcd_node_view($node, $view_mode, $langcode) {
     if ($node->tweet_mode == 'last') {
       drupal_add_js($base . '/socket.io.min.js');
       $node->tweet_field = $newest_tweet;
-      $settings['tweets'] = $tweets;
     }
     elseif ($node->tweet_mode == 'random') {
+      $settings['tweets'] = array_values($tweets);
       $node->tweet_field = empty($tweets) ? FALSE : $tweets[array_rand($tweets)];
+    }
+
+    if (empty($node->tweet_field['text'])) {
+      $node->tweet_field['text'] = t('Send me a tweet!');
     }
 
     drupal_add_js($base . '/tcd_tweets.js');
