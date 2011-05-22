@@ -207,7 +207,7 @@ function tcd_default_page_manager_pages() {
     $pane->panel = 'main_section';
     $pane->type = 'block';
     $pane->subtype = 'views-tweets-block';
-    $pane->shown = TRUE;
+    $pane->shown = FALSE;
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 0,

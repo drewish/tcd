@@ -1,12 +1,9 @@
 <?php
-dsm($fields);
 $nid = $fields['nid']->raw;
-    $tweets = db_query_range('SELECT tt.* FROM {tcd_tweets} tt
-      WHERE tt.site_nid = :nid ORDER BY tt.created_time DESC', 0, 1, array(':nid' => $fields['nid']->raw))
-      ->fetchAll();
-    // Pull the newest tweet or FALSE if it's an empty array.
-    dsm($tweets);
-
+$tweet = db_query_range('SELECT tt.* FROM {tcd_tweets} tt
+    WHERE tt.site_nid = :nid ORDER BY tt.created_time DESC', 0, 1, array(':nid' => $fields['nid']->raw))
+    ->fetch();
+unset($fields['nid']);
 /**
  * @file views-view-fields.tpl.php
  * Default simple view template to all the fields as a row.
@@ -41,3 +38,9 @@ $nid = $fields['nid']->raw;
     <?php print $field->content; ?>
   <?php print $field->wrapper_suffix; ?>
 <?php endforeach; ?>
+
+<?php if ($tweet): ?>
+<div class="tweet-text-home"><?php print empty($tweet->text) ? '' : check_plain($tweet->text); ?></div>
+<div class="tweet-screen-name-home"><?php print empty($tweet->screen_name) ? '' : check_plain($tweet->screen_name); ?></div>
+<div class="tweet-created-home"><?php print empty($tweet->created_time) ? '' : format_interval(REQUEST_TIME - $tweet->created_time); ?></div>
+<?php endif; ?>

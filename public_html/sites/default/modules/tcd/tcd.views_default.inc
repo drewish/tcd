@@ -172,74 +172,27 @@ function tcd_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Field: Tweets: Tweet Text */
-  $handler->display->display_options['fields']['text']['id'] = 'text';
-  $handler->display->display_options['fields']['text']['table'] = 'tcd_tweets';
-  $handler->display->display_options['fields']['text']['field'] = 'text';
-  $handler->display->display_options['fields']['text']['label'] = '';
-  $handler->display->display_options['fields']['text']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['text']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['text']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['text']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['text']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['text']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['text']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['text']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['text']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['text']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['text']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['text']['element_label_colon'] = 0;
-  $handler->display->display_options['fields']['text']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['text']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['text']['empty_zero'] = 0;
-  /* Field: Tweets: Screen Name */
-  $handler->display->display_options['fields']['screen_name']['id'] = 'screen_name';
-  $handler->display->display_options['fields']['screen_name']['table'] = 'tcd_tweets';
-  $handler->display->display_options['fields']['screen_name']['field'] = 'screen_name';
-  $handler->display->display_options['fields']['screen_name']['label'] = '';
-  $handler->display->display_options['fields']['screen_name']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['screen_name']['alter']['make_link'] = 1;
-  $handler->display->display_options['fields']['screen_name']['alter']['path'] = 'http://twitter.com/[screen_name]';
-  $handler->display->display_options['fields']['screen_name']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['screen_name']['alter']['external'] = 1;
-  $handler->display->display_options['fields']['screen_name']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['screen_name']['alter']['target'] = '_blank';
-  $handler->display->display_options['fields']['screen_name']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['screen_name']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['screen_name']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['screen_name']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['screen_name']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['screen_name']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['screen_name']['element_label_colon'] = 0;
-  $handler->display->display_options['fields']['screen_name']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['screen_name']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['screen_name']['empty_zero'] = 0;
-  /* Field: Tweets: Created Time */
-  $handler->display->display_options['fields']['created_time']['id'] = 'created_time';
-  $handler->display->display_options['fields']['created_time']['table'] = 'tcd_tweets';
-  $handler->display->display_options['fields']['created_time']['field'] = 'created_time';
-  $handler->display->display_options['fields']['created_time']['label'] = '';
-  $handler->display->display_options['fields']['created_time']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['created_time']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['created_time']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['created_time']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['created_time']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['created_time']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['created_time']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['created_time']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['created_time']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['created_time']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['created_time']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['created_time']['element_label_colon'] = 0;
-  $handler->display->display_options['fields']['created_time']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['created_time']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['created_time']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['created_time']['date_format'] = 'time ago';
-  /* Sort criterion: Tweets: Created Time */
-  $handler->display->display_options['sorts']['created_time']['id'] = 'created_time';
-  $handler->display->display_options['sorts']['created_time']['table'] = 'tcd_tweets';
-  $handler->display->display_options['sorts']['created_time']['field'] = 'created_time';
-  $handler->display->display_options['sorts']['created_time']['order'] = 'DESC';
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = '';
+  $handler->display->display_options['fields']['nid']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['nid']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['nid']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['nid']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['nid']['element_label_colon'] = 0;
+  $handler->display->display_options['fields']['nid']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['nid']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['nid']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['nid']['link_to_node'] = 0;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -269,8 +222,6 @@ function tcd_views_default_views() {
     t('Items per page'),
     t('- All -'),
     t('Offset'),
-    t('http://twitter.com/[screen_name]'),
-    t('_blank'),
     t('Block'),
   );
   $export['tweets'] = $view;
