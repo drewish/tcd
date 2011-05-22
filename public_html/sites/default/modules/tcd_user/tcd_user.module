@@ -30,6 +30,7 @@ function tcd_user_form_user_register_form_alter(&$form, &$form_state) {
   $form['account']['mail']['#title'] = 'Email';
   $form['actions']['submit']['#value'] = 'Sign Up';
   // Attached our own js
+  drupal_add_library('system', 'effects.slide');
   drupal_add_js(drupal_get_path('module', 'tcd_user') . '/jQuery.dPassword.min.js');
   $form['#attached']['js'] = array(drupal_get_path('module', 'tcd_user') . '/tcd_users.js');  
 }
