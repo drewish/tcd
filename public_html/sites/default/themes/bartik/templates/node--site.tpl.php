@@ -9,7 +9,8 @@
     </h2>
   <?php endif; ?>
 
-<div class="dynamic-font"><?php print ($node->tweet_field['text']);?></div>
+<div class="dynamic-font tweet-text"><?php print check_plain($node->tweet_field['text']);?></div>
+
 <div class="share-links">
 <a href="http://twitter.com/share" class="twitter-share-button" data-url="<?php print url($node_url, array('absolute' => TRUE)); ?>" data-count="vertical" data-text="<?php print $title; ?>">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 
