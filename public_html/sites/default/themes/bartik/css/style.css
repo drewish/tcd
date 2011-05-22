@@ -180,6 +180,9 @@ table {
   -webkit-border-radius:15px
   border-radius: 15px;
 }
+
+table th {display:none;}
+
 table table {
   font-size: 1em;
 }
