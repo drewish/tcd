@@ -70,6 +70,33 @@ function tcd_add_tweets_json() {
   return drupal_json_encode(array('status' => 'cool', 'number' => count($data)));
 }
 
+function tcd_form_site_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['field_color_background']['#attached'] = array(
+    // Add Farbtastic color picker.
+    'library' => array(
+      array('system', 'farbtastic'),
+    ),
+    // // Add custom CSS.
+    // 'css' => array(
+    //   $base . '/color.css' => array(),
+    // ),
+    // Add custom JavaScript.
+    'js' => array(
+      drupal_get_path('module', 'tcd') . '/tcd_edit.js',
+    //   array(
+    //     'data' => array(
+    //       'color' => array(
+    //         'reference' => color_get_palette($theme, TRUE),
+    //         'schemes' => $schemes,
+    //       ),
+    //       'gradients' => $info['gradients'],
+    //     ),
+    //     'type' => 'setting',
+    //   ),
+    ),
+  );
+}
+
 /**
  * Implement hook_node_view().
  */
@@ -83,7 +110,11 @@ function tcd_node_view($node, $view_mode, $langcode) {
     $user_name = $node->field_twitter_user[LANGUAGE_NONE][0]['value'];
     $hash_tag = isset($node->field_twitter_tag[LANGUAGE_NONE][0]['value']) ? $node->field_twitter_tag[LANGUAGE_NONE][0]['value'] : '';
     $type = $node->field_mode[LANGUAGE_NONE][0]['value'];
-
+    foreach($tweets as $tweet) {
+      $node->tweet_field = $tweet;
+      // We only want the 1st tweet in the array
+      break;
+    }
     drupal_add_js(array('twitter' => array('userName' => $user_name, 'hashTag' => $hash_tag, 'tweetType' => $type, 'tweets' => $tweets)), 'setting');
     drupal_add_js(drupal_get_path('module', 'tcd') . '/tcd_tweets.js');
   } 
