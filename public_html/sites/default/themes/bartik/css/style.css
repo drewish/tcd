@@ -1707,14 +1707,18 @@ div.admin-panel .description {
 
 .page-node #block-system-main {
   color: #ccc;
-  font:1em;
+  font:2em;
   font-family: 'veracruz-serial', Helvetica, Arial, sans-serif; 
 }
 
 .page-node #content {
-  background: url(../images/signup_signin_bg.jpg) no-repeat 0 0;
-  height:988px;
-  width:761px;
+    background: url("../images/signup_signin_bg.jpg") no-repeat scroll -105px -39px transparent;
+    display: block;
+    height: 988px;
+    margin: 0 auto;
+    padding-top: 50px;
+    width: 761px;
+}
 }
 
 .page-node #main-menu,
