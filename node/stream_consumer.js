@@ -42,20 +42,18 @@ StreamConsumer.prototype = {
       stream.on('data', function (data) {
         // get some data
         if(data.text){
-          //try{
+          try{
             self.add_tweet(data);
           // handle this - for the time being at least we won't die
-          // }catch(e){
-          //   console.log(e);
-          // }
+          } catch(e){
+            console.log(e);
+          }
         }
       });
     });
   },
   stop_server : function(){
-    if(this.server){
-      
-    }
+    if(this.server){}
     return true;
   },
   // stop server and restart
@@ -73,14 +71,16 @@ StreamConsumer.prototype = {
     }
     http.get(options, function(res){
       res.on("data",function(data){
-        self.user_names_to_get = [];
-        data = JSON.parse("" + data);
-        for(var id in data){
-          if(typeof(self.sites[id]) == "undefined" || self.sites[id].last_modified < data.last_modified){
-            self.add_site(new Site(id, data[id]))
+        try{
+          self.user_names_to_get = [];
+          data = JSON.parse("" + data);
+          for(var id in data){
+            if(typeof(self.sites[id]) == "undefined" || self.sites[id].last_modified < data.last_modified){
+              self.add_site(new Site(id, data[id]))
+            }
           }
-        }
-        self.get_user_ids_and_restart();
+          self.get_user_ids_and_restart();
+        }catch(e){console.log(e)}
       })
     })
   },
