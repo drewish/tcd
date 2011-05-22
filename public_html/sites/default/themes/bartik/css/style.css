@@ -325,7 +325,6 @@ h1#site-name,
   font-style: italic;
 }
 .page-user #content .section .region{ 
-  background: url(../images/signup_signin_panel.png) no-repeat 250px 0;
   text-align:center;
   height: 300px;
   margin-top: -50px;}
@@ -1725,4 +1724,33 @@ div.admin-panel .description {
 .page-node #main-menu,
 .page-node #breadcrumb {display:none;}
 
+#user-register-form-register-page {
+  background: url(../images/signup_panel.png) no-repeat 250px 0;
+}
+
+#user-register-form-register-page .form-actions,
+#user-login-form-register-page .form-actions {
+  margin-left: 400px;
+}
+
+#user-register-form-register-page .form-submit{
+  background: url(../images/signup_button.png) no-repeat 0 0;
+}
+
+#user-login-form-register-page {
+  background: url(../images/signin_panel.png) no-repeat 250px 0;
+}
+
+#user-login-form-register-page .form-submit{
+  background: url(../images/signin_button.png) no-repeat 0 0;
+}
+
+.page-user .form-actions input#edit-submit{
+  width: 178px;
+  height: 50px;
+}
 .page-node #block-system-main {text-align:center;}
+
+#user-login-form-register-page .item-list {
+  display: none;
+}
