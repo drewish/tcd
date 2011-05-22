@@ -9,6 +9,8 @@ body.overlay {
 .comment .comment-arrow {
   border-color: #ffffff;
 }
+
+
 #page,
 #header,
 #main-wrapper,
@@ -19,6 +21,10 @@ body.overlay {
   background: url(../images/background.gif) repeat 0 0;
 }
 
+.front #block-user-login,
+.page-user #content .section {
+  width:988px;
+  height:761px;}
 }
 .tabs ul.primary li a.active {
   background-color: #ffffff;

@@ -293,14 +293,14 @@ ul.tips {
 #skip-link a:focus {
   outline: 0;
 }
-#logo {
-  float: left; /* LTR */
-  padding: 15px 15px 15px 10px; /* LTR */
-}
+
 #name-and-slogan {
-  float: left; /* LTR */
   padding-top: 34px;
-  margin: 0 0 30px 15px; /* LTR */
+  width: 1050px;
+}
+#site-name,
+#site-slogan {
+  text-align:center;
 }
 #site-name { 
   font-size: 1.821em;
@@ -310,9 +310,10 @@ ul.tips {
 h1#site-name,
 #site-name{
   background: url(../images/logo.png) no-repeat 0 0;
-  margin: 0;
-  text-indent:-999em;
-  height:43px;
+  margin: 0 400px;
+  text-indent: -999em;
+  height: 43px;
+  width:230px;
 }
 #site-name a {
   font-weight: normal;
@@ -323,6 +324,12 @@ h1#site-name,
   word-spacing: 0.1em;
   font-style: italic;
 }
+.page-user #content .section .region{ 
+  background: url(../images/signup_signin_panel.png) no-repeat 250px 0;
+  text-align:center;
+  height: 300px;
+  margin-top: -50px;}
+
 /* Region header blocks. */
 .region-header .block {
   font-size: 0.857em;
@@ -464,6 +471,10 @@ h1#site-name,
 #main-menu {
   clear: both;
 }
+.page-user #main-menu,
+.page-user .breadcrumb,
+.page-user h1#page-title {display:none;}
+
 #main-menu-links a {
   color: #d9d9d9;
   padding: 0.6em 1em 0.4em;
@@ -965,17 +976,16 @@ ul.links {
   margin-bottom: 20px;
 }
 .tabs ul.primary {
-  padding: 0 3px;
+  padding: 0 3px 0 0;
   margin: 0;
   overflow: hidden;
   border: none;
-  background: transparent url(../images/tabs-border.png) repeat-x left bottom;
 }
 .tabs ul.primary li {
   display: block;
   float: left; /* LTR */
   vertical-align: bottom;
-  margin: 0 5px 0 0; /* LTR */
+  margin: 0 5px 0 250px; /* LTR */
 }
 .tabs ul.primary li.active a {
   border-bottom: 1px solid #ffffff;
@@ -1107,7 +1117,8 @@ a.button {
   text-align: center;
   margin-bottom: 1em;
   margin-right: 0.6em; /* LTR */
-  padding: 4px 17px;
+  margin-top:2em;
+  padding: 8px 25px;
   -khtml-border-radius: 15px;
   -moz-border-radius: 20px;
   -webkit-border-radius: 15px;
@@ -1235,7 +1246,9 @@ select.form-select {
 input.form-text,
 textarea.form-textarea,
 select.form-select {
-  border: 1px solid #ccc;
+  background: url (..images/);
+  width:400px;
+  
 }
 input.form-submit:hover,
 input.form-submit:focus {
@@ -1660,6 +1673,29 @@ div.admin-panel .description {
   background-color: #ddd;
 }
 
+/* ---------- User Register ---------- */
+
+.page-user label {display:none; }
+.page-user .form-item-name {padding-top:100px;}
+.page-user #edit-submit {margin-top:1em;}
+
+.page-user .form-item,
+.page-user .form-actions{
+  margin-left:285px;
+}
+
+.page-user #edit-actions {margin-left:440px;}
+
+.page-user .form-item input,
+.page-user .form-actions input {
+  background: url(../images/text_input.png) no-repeat 0 0;
+  display:block;
+  height: 26px;
+  width: 412px;
+  border: 0 none;
+}
+
+.page-user .form-actions input#edit-submit{ width:100px;}
 
 /* ---------- Node views ---------- */
 
