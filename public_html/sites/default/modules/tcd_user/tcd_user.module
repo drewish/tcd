@@ -7,7 +7,17 @@
 include_once('tcd_user.features.inc');
 
 /**
- * Implement hook_form_alter
+ * Implement hook_menu_alter().
+ */
+
+function tcd_user_menu_alter(&$items) {
+  $items['user/login']['title'] = 'Sign In';
+  $items['user/register']['title'] = 'Sign Up';  
+  $items['user/register']['page callback'] = 'tcd_user_register';
+}
+
+/**
+ * Implement hook_form_alter().
  */
 function tcd_user_form_user_register_form_alter(&$form, &$form_state) {
   // Remove all the description text.
@@ -22,4 +32,13 @@ function tcd_user_form_user_register_form_alter(&$form, &$form_state) {
   // Attached our own js
   drupal_add_js(drupal_get_path('module', 'tcd_user') . '/jQuery.dPassword.min.js');
   $form['#attached']['js'] = array(drupal_get_path('module', 'tcd_user') . '/tcd_users.js');  
+}
+
+function tcd_user_register() {
+  $content = '<div>';
+  $content .= '<div id="user-register-form-register-page">' . render(drupal_get_form('user_register_form')) .'</div>';
+  $content .= '<div id="user-login-form-register-page">' . render(drupal_get_form('user_login_block')) .'</div>';
+  $content .= '</div>';
+
+  return $content;
 }
