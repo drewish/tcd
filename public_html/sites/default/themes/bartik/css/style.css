@@ -323,12 +323,10 @@ h1#site-name,
 }
 
 .page-home #site-name { 
-    height: 113px;
-    margin: 0;
+   
+    margin: 0 auto;
     padding: 0;
-    position: absolute;
-    right: 0;
-    top: 90px;
+
     width: 247px;}
 
 #site-name a {
