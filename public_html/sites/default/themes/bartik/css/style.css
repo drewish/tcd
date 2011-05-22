@@ -1735,7 +1735,7 @@ div.admin-panel .description {
   margin-top:-22px;
 }
 
-#user-login-form-register-page .form-type-password {margin-top: 52px;}
+#user-login-form-register-page .form-type-password {margin-top: 30px; margin-bottom:35px;}
 #user-login-form-register-page .form-submit {padding: 25px;}
 
 #user-register-form-register-page .form-submit{
