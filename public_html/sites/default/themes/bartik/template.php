@@ -110,9 +110,12 @@ function bartik_preprocess_node(&$variables) {
   if ($variables['view_mode'] == 'full' && node_is_page($variables['node'])) {
     $node = $variables['node'];
     $variables['classes_array'][] = 'node-full';
+    $variables['tweet_classes'] = '';
 
     if ($node->type == 'site') {
-      $variables['tweet_classes'] = "font-{$node->field_font[LANGUAGE_NONE][0]['value']} mode-{$node->tweet_mode}";
+      if (isset($node->field_font[LANGUAGE_NONE][0]['value'])) {
+        $variables['tweet_classes'] = "font-{$node->field_font[LANGUAGE_NONE][0]['value']} mode-{$node->tweet_mode}";        
+      }
     }
   }
 }
