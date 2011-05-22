@@ -19,7 +19,7 @@ PushSocket.prototype = {
     this.server.listen(8080);
     
     // add the listener for the message
-    this.socket = io.listen(server); 
+    this.socket = io.listen(this.server); 
     this.socket.on('connection', function(client){ 
       // we have a new client, so let's add him to our list of actives
       self.active_clients.push(client);
