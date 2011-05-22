@@ -36,6 +36,9 @@
        }
        return false;
      });
+     if (window.location.hash == '#login') {
+       $('ul.primary li').eq(1).find('a').click();
+     }
     }
   };
 })(jQuery);
