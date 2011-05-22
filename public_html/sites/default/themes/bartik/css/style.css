@@ -622,6 +622,12 @@ h1#page-title {
   font-size: 1.429em;
   line-height: 1.4;
 }
+.page-home #content h2 {text-align: center;}
+
+.page-home .content {text-align: center;}
+
+.page-home #edit-field-mode-und-last {padding-right: 5px;}
+
 .node .content {
   font-size: 1.071em;
 }
@@ -1784,9 +1790,9 @@ div.admin-panel .description {
 
 
 .page-home .views-field-title {
-  font-size:40px;
+  font-size:30px;
   font-family:MyriadPro;
-  padding: 11px 0;
+  padding: 18px 0;
   text-align: center;
 }
 

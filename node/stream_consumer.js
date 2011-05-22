@@ -27,7 +27,7 @@ StreamConsumer.prototype = {
     var self = this;
     this.running = true;
     // set up the timer, we will check for new sites every 30 seconds
-    this.get_site_interval = setInterval(function(){self.get_sites()}, 30000);
+    this.get_site_interval = setInterval(function(){self.get_sites()}, 5000);
     this.get_sites();
   },
   // method to exit gracefully

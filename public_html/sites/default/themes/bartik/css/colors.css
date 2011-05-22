@@ -5,7 +5,7 @@
 body,
 body.overlay {
   background: url(../images/background.gif) repeat 0 0;
-  color: #3b3b3b;
+  color: #ccc;
 }
 .comment .comment-arrow {
   border-color: #ffffff;
