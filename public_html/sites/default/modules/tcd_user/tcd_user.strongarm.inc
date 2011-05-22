@@ -27,13 +27,6 @@ function tcd_user_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'user_email_verification';
-  $strongarm->value = 0;
-  $export['user_email_verification'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'user_mail_cancel_confirm_body';
   $strongarm->value = '[user:name],
 
@@ -281,13 +274,6 @@ Your account on [site:name] has been canceled.
   $strongarm->name = 'user_pictures';
   $strongarm->value = 1;
   $export['user_pictures'] = $strongarm;
-
-  $strongarm = new stdClass;
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'user_register';
-  $strongarm->value = '1';
-  $export['user_register'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
