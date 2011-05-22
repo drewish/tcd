@@ -170,10 +170,14 @@ a.feed-icon {
 
 table {
   border: 0;
+  background-color: #ccc;
   border-spacing: 0;
   font-size: 0.857em;
   margin: 10px 0;
   width: 100%;
+  -moz-border-radius: 15px;
+  -webkit-border-radius:15px
+  border-radius: 15px;
 }
 table table {
   font-size: 1em;
