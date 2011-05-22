@@ -74,6 +74,7 @@ StreamConsumer.prototype = {
       res.on("data",function(data){
         self.user_names_to_get = [];
         data = JSON.parse("" + data);
+        console.log("data");
         for(var id in data){
           if(typeof(self.sites[id]) == "undefined" || self.sites[id].last_modified < data.last_modified){
             self.add_site(new Site(id, data[id]))
@@ -90,6 +91,7 @@ StreamConsumer.prototype = {
         if(data instanceof Array){
           self.user_ids.push(data[0].id);
         }
+        console.log(data);
         self.user_names_to_get.splice(self.user_names_to_get.indexOf(name));
         if(self.user_names_to_get.length == 0){
           self.restart_server();
