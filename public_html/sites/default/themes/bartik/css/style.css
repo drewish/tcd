@@ -1813,10 +1813,10 @@ div.admin-panel .description {
   font-size:20px;
 } 
 
-.page-home .views-field-screen-name{ margin-top:10px; margin-left:150px; }
+.page-home .views-field-screen-name{ margin-top:10px; margin-left:135px; }
 .page-home .views-field-created-time {
   float: right;
-  margin-right: 92px;
+  margin-right: 105px;
   margin-top:-21px;
 }
 
