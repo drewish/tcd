@@ -22,7 +22,9 @@ function tcd_user_menu_alter(&$items) {
 function tcd_user_form_user_register_form_alter(&$form, &$form_state) {
   // Remove all the description text.
   $form['account']['name']['#description'] = '';
+  $form['account']['name']['#attributes']['placeholder'] = 'username';
   $form['account']['mail']['#description'] = '';
+  $form['account']['mail']['#attributes']['placeholder'] = 'email';
   $form['account']['pass']['#description'] = '';
   $form['account']['pass']['#type'] = 'password';
   $form['account']['pass']['#title'] = 'Password';
@@ -33,6 +35,11 @@ function tcd_user_form_user_register_form_alter(&$form, &$form_state) {
   drupal_add_library('system', 'effects.slide');
   drupal_add_js(drupal_get_path('module', 'tcd_user') . '/jQuery.dPassword.min.js');
   $form['#attached']['js'] = array(drupal_get_path('module', 'tcd_user') . '/tcd_users.js');  
+}
+
+function tcd_user_form_user_login_block_alter(&$form, &$form_state) {
+  // Remove all the description text.
+  $form['name']['#attributes']['placeholder'] = 'username';  
 }
 
 function tcd_user_register() {
