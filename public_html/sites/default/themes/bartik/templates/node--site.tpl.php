@@ -10,5 +10,9 @@
   <?php endif; ?>
 
 <?php print ($node->tweet_field['text']);?>
+<div class="share-links">
+<a href="http://twitter.com/share" class="twitter-share-button" data-url="<?php print url($node_url, array('absolute' => TRUE)); ?>" data-count="vertical" data-text="<?php print $title; ?>">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 
+<iframe src="http://www.facebook.com/plugins/like.php?href=<?php print drupal_encode_path(url($node_url, array('absolute' => TRUE))); ?>&amp;send=true&amp;layout=box_count&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
+</div>
 </div>
