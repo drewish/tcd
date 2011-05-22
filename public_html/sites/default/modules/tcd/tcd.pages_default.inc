@@ -18,6 +18,8 @@ function tcd_default_page_manager_pages() {
   $page->path = 'home';
   $page->access = array(
     'logic' => 'and',
+    'type' => 'none',
+    'settings' => NULL,
   );
   $page->menu = array(
     'type' => 'none',
@@ -69,12 +71,68 @@ function tcd_default_page_manager_pages() {
     ),
   );
   $display = new panels_display;
-  $display->layout = 'onecol';
-  $display->layout_settings = array();
+  $display->layout = 'flexible';
+  $display->layout_settings = array(
+    'items' => array(
+      'canvas' => array(
+        'type' => 'row',
+        'contains' => 'column',
+        'children' => array(
+          0 => 'main',
+        ),
+        'parent' => NULL,
+      ),
+      'main' => array(
+        'type' => 'column',
+        'width' => 100,
+        'width_type' => '%',
+        'children' => array(
+          0 => 'main-row',
+          1 => 1,
+        ),
+        'parent' => 'canvas',
+      ),
+      'main-row' => array(
+        'type' => 'row',
+        'contains' => 'region',
+        'children' => array(
+          0 => 'center',
+        ),
+        'parent' => 'main',
+      ),
+      'center' => array(
+        'type' => 'region',
+        'title' => 'Dashboard',
+        'width' => 100,
+        'width_type' => '%',
+        'parent' => 'main-row',
+        'class' => '',
+      ),
+      1 => array(
+        'type' => 'row',
+        'contains' => 'region',
+        'children' => array(
+          0 => 'main_section',
+        ),
+        'parent' => 'main',
+        'class' => '',
+      ),
+      'main_section' => array(
+        'type' => 'region',
+        'title' => 'Main Section',
+        'width' => 100,
+        'width_type' => '%',
+        'parent' => '1',
+        'class' => '',
+      ),
+    ),
+  );
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
       'middle' => NULL,
+      'center' => NULL,
+      'main_section' => NULL,
     ),
   );
   $display->cache = array();
@@ -83,7 +141,7 @@ function tcd_default_page_manager_pages() {
   $display->panels = array();
     $pane = new stdClass;
     $pane->pid = 'new-1';
-    $pane->panel = 'middle';
+    $pane->panel = 'center';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
     $pane->shown = TRUE;
@@ -103,10 +161,10 @@ function tcd_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $display->content['new-1'] = $pane;
-    $display->panels['middle'][0] = 'new-1';
+    $display->panels['center'][0] = 'new-1';
     $pane = new stdClass;
     $pane->pid = 'new-2';
-    $pane->panel = 'middle';
+    $pane->panel = 'center';
     $pane->type = 'block';
     $pane->subtype = 'views-my_sites-block_1';
     $pane->shown = TRUE;
@@ -123,7 +181,27 @@ function tcd_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $display->content['new-2'] = $pane;
-    $display->panels['middle'][1] = 'new-2';
+    $display->panels['center'][1] = 'new-2';
+    $pane = new stdClass;
+    $pane->pid = 'new-3';
+    $pane->panel = 'main_section';
+    $pane->type = 'block';
+    $pane->subtype = 'views-recent_sites-block';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $display->content['new-3'] = $pane;
+    $display->panels['main_section'][0] = 'new-3';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-1';
   $handler->conf['display'] = $display;
