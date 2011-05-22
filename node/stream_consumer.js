@@ -71,14 +71,16 @@ StreamConsumer.prototype = {
     }
     http.get(options, function(res){
       res.on("data",function(data){
-        self.user_names_to_get = [];
-        data = JSON.parse("" + data);
-        for(var id in data){
-          if(typeof(self.sites[id]) == "undefined" || self.sites[id].last_modified < data.last_modified){
-            self.add_site(new Site(id, data[id]))
+        try{
+          self.user_names_to_get = [];
+          data = JSON.parse("" + data);
+          for(var id in data){
+            if(typeof(self.sites[id]) == "undefined" || self.sites[id].last_modified < data.last_modified){
+              self.add_site(new Site(id, data[id]))
+            }
           }
-        }
-        self.get_user_ids_and_restart();
+          self.get_user_ids_and_restart();
+        }catch(e){console.log(e)}
       })
     })
   },

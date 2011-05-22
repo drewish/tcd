@@ -54,7 +54,6 @@ Site.prototype = {
   is_valid : function(tweet_data){
     // check to make sure we have the right screen name
     if(this.screen_names.indexOf(tweet_data.user.screen_name) <= -1){
-      console.log([this.screen_names, tweet_data.user.screen_name])
       return false;
     }
     // if we have a hash tag - test it here
