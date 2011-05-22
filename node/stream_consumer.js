@@ -86,13 +86,14 @@ StreamConsumer.prototype = {
   },
   get_user_ids_and_restart : function(){
     var self = this;
+    var user_names = ([] + self.user_names_to_get).split(",");
     this.user_names_to_get.forEach(function(name){
       TwitterClient.get('/users/lookup.json', {screen_name : name}, function(data) {
         if(data instanceof Array){
           self.user_ids.push(data[0].id);
         }
-        self.user_names_to_get.splice(self.user_names_to_get.indexOf(name));
-        if(self.user_names_to_get.length == 0){
+        user_names.splice(user_names.indexOf(name));
+        if(user_names.length == 0){
           self.restart_server();
         }
       });
