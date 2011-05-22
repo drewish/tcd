@@ -49,4 +49,17 @@
       }
     }
   };
+  
+  var socket = new io.Socket(null, {port: 8080, rememberTransport: false});
+  socket.connect();
+  socket.on('message', function(obj){
+    console.log (obj);
+  });
+  
+  socket.on('connect', function(){ message({ message: ['System', 'Connected']})});
+  socket.on('disconnect', function(){ message({ message: ['System', 'Disconnected']})});
+  socket.on('reconnect', function(){ message({ message: ['System', 'Reconnected to server']})});
+  socket.on('reconnecting', function( nextRetry ){ message({ message: ['System', 'Attempting to re-connect to the server, next attempt in ' + nextRetry + 'ms']})});
+  socket.on('reconnect_failed', function(){ message({ message: ['System', 'Reconnected to server FAILED.']})});
+  
 })(jQuery);
