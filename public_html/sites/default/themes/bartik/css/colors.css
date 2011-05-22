@@ -4,6 +4,7 @@
 
 body,
 body.overlay {
+  background: url(../images/background.gif) repeat 0 0;
   color: #3b3b3b;
 }
 .comment .comment-arrow {
@@ -11,21 +12,6 @@ body.overlay {
 }
 
 
-#page,
-#header,
-#main-wrapper,
-#page-wrapper,
-#footer-wrapper,
-#main-menu-links li a.active,
-#main-menu-links li.active-trail a {
-  background: url(../images/background.gif) repeat 0 0;
-}
-
-.front #block-user-login,
-.page-user #content .section {
-  width:988px;
-  height:761px;}
-}
 .tabs ul.primary li a.active {
   background-color: #ffffff;
 }
