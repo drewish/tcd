@@ -4,7 +4,6 @@ $tweet = db_query_range('SELECT tt.* FROM {tcd_tweets} tt
     WHERE tt.site_nid = :nid ORDER BY tt.created_time DESC', 0, 1, array(':nid' => $fields['nid']->raw))
     ->fetch();
 unset($fields['nid']);
-
 /**
  * @file views-view-fields.tpl.php
  * Default simple view template to all the fields as a row.
@@ -40,4 +39,4 @@ unset($fields['nid']);
   <?php print $field->wrapper_suffix; ?>
 <?php endforeach; ?>
 
-<div class="tweet-text"><?php print check_plain($tweet['text']); ?></div>
+<div class="tweet-text-home"><?php print empty($tweet->text) ? '' : check_plain($tweet->text); ?></div>

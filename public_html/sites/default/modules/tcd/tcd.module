@@ -160,3 +160,24 @@ function tcd_node_view($node, $view_mode, $langcode) {
 function tcd_node_delete($node) {
   db_query('DELETE FROM {tcd_tweets} WHERE site_nid = :nid', array(':nid' => $node->nid));
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function tcd_form_alter(&$form, &$form_state, $form_id) {
+  if($form_id == 'site_node_form' && $form['type']['#value']) {
+    $form['path']['#access'] = FALSE;
+    $form['menu']['#access'] = FALSE;
+    $form['comment_settings']['#access'] = FALSE;
+    $form['field_color_background']['#access'] = FALSE;
+    $form['field_font']['#access'] = FALSE;
+    $form['field_font_color']['#access'] = FALSE;
+    $form['language']['#access'] = FALSE;
+
+    $form['revision_information']['#access'] = FALSE;
+
+    $form['author']['#access'] = FALSE;
+    $form['status']['#access'] = FALSE;
+
+  }
+}  
