@@ -37,15 +37,13 @@ function tcd_ajax_deliver($json) {
 
 function tcd_follow_json() {
   $follows = array();
-  $last_changed = 0;
   foreach (node_load_multiple(array(), array('type' => 'site')) as $node) {
-    $last_changed = max($node->changed, $last_changed);
-    $follows[$node->nid] = preg_split("/[\s,]+/", $node->field_twitter_user['und'][0]['value']);
+    $follows[$node->nid] = array(
+      'screen_names' => preg_split("/[\s,]+/", $node->field_twitter_user['und'][0]['value']),
+      'last_modified' => $node->changed
+    );
   }
-  return drupal_json_encode(array(
-    'last-modified' => $last_changed,
-    'sites' => $follows,
-  ));
+  return drupal_json_encode($follows);
 }
 
 function tcd_add_tweets_json() {
