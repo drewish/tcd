@@ -1730,13 +1730,11 @@ div.admin-panel .description {
 }
 
 .page-node #content {
-    background: url("../images/signup_signin_bg.jpg") no-repeat scroll -105px 10px transparent;
+    background: url("../images/signup_signin_bg.jpg") no-repeat scroll 0px 10px transparent;
     display: block;
     height: 988px;
     margin: 0 auto;
     padding-top: 50px;
-    width: 761px;
-}
 }
 
 .page-node #main-menu,
@@ -1839,10 +1837,10 @@ div.admin-panel .description {
 
 .twitter-link {
   float: left;
-  padding-left: 259px;
+  padding-left: 45%;
 }
 
 .facebook-link {
   float: right;
-  width: 381px;
+  width: 45%;
 }
