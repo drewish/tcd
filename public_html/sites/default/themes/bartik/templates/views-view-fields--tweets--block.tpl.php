@@ -39,4 +39,8 @@ unset($fields['nid']);
   <?php print $field->wrapper_suffix; ?>
 <?php endforeach; ?>
 
+<?php if ($tweet): ?>
 <div class="tweet-text-home"><?php print empty($tweet->text) ? '' : check_plain($tweet->text); ?></div>
+<div class="tweet-screen-name-home"><?php print empty($tweet->screen_name) ? '' : check_plain($tweet->screen_name); ?></div>
+<div class="tweet-created-home"><?php print empty($tweet->created_time) ? '' : format_interval(REQUEST_TIME - $tweet->created_time); ?></div>
+<?php endif; ?>
