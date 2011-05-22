@@ -24,8 +24,8 @@
 
      $('ul.primary li').eq(2).find('a').click(function() {
        if (click_link == 1) {
-         $('#user-register-form-register-page').show("slide",{direction: 'right'});
          $('#user-login-form-register-page').hide();
+         $('#user-register-form-register-page').show("slide",{direction: 'right'});
          click_link = 0;
        }
        return false;
