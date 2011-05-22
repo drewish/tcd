@@ -40,7 +40,8 @@ function tcd_follow_json() {
   foreach (node_load_multiple(array(), array('type' => 'site')) as $node) {
     $follows[$node->nid] = array(
       'screen_names' => preg_split("/[\s,]+/", $node->field_twitter_user['und'][0]['value']),
-      'last_modified' => $node->changed
+      'last_modified' => $node->changed,
+      'hash_tag' => $node->field_twitter_tag['und'][0]['value']
     );
   }
   return drupal_json_encode($follows);
