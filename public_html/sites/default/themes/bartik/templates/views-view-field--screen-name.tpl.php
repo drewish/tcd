@@ -1,1 +1,0 @@
-<?php print t ('Posted by @') . $field_screen_name ?>
