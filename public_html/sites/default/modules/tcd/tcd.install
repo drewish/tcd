@@ -24,7 +24,7 @@ function tcd_schema() {
         'default' => ''
       ),
       'created_time' => array(
-        'description' => t("A duplicate of {twitter}.created_at in UNIX timestamp format."),
+        'description' => t("A UNIX timestamp when the tweet was created."),
         'type' => 'int',
         'not null' => TRUE
       ),
