@@ -200,7 +200,7 @@ function tcd_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_mode',
       'label' => 'Which Tweet?',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -208,7 +208,7 @@ function tcd_field_default_fields() {
         'active' => 1,
         'module' => 'options',
         'settings' => array(),
-        'type' => 'options_select',
+        'type' => 'options_buttons',
         'weight' => '-1',
       ),
     ),
