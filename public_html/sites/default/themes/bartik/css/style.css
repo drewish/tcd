@@ -541,6 +541,7 @@ h1#site-name,
 /* ------------------- Main ------------------- */
 
 #main {
+  background: url(../images/signup_signin_bg.jpg) no-repeat 250px 0;
   margin-top: 20px;
   margin-bottom: 40px;
 }
@@ -1128,6 +1129,7 @@ a.button:active {
   text-decoration: none;
   color: #5a5a5a;
 }
+
 
 /* -------------- Form Elements   ------------- */
 
@@ -1722,10 +1724,15 @@ div.admin-panel .description {
   background: url(../images/signup_panel.png) no-repeat 250px 0;
 }
 
-#user-register-form-register-page .form-actions,
+#user-register-form-register-page .form-actions {margin-left: 400px;}
+
 #user-login-form-register-page .form-actions {
-  margin-left: 400px;
+  margin-left: 411px;
+  margin-top:-22px;
 }
+
+#user-login-form-register-page .form-type-password {margin-top: 52px;}
+#user-login-form-register-page .form-submit {padding: 25px;}
 
 #user-register-form-register-page .form-submit{
   background: url(../images/signup_button.png) no-repeat 0 0;

@@ -1,6 +1,30 @@
 (function($){
+  var updateTweet = function (text) {
+    var clean = Drupal.checkPlain(text);
+    $('.tweet-text').text(clean);
+    $("meta[property='og:description']").text(clean);
+  };
+
   Drupal.behaviors.tcdTweets = {
     attach: function (context, settings) {
+
+    }
+  };
+
+  if (typeof io !== 'undefined' && typeof io.Socket !== 'undefined') {
+    var socket = new io.Socket(null, {port: 8080, rememberTransport: false});
+    socket.connect();
+    socket.on('message', function(obj){
+      console.log(arguments);
+    });
+    socket.on('connect', function(obj){
+      console.log(arguments)
+    });
+  }
+
+})(jQuery);
+
+/*
       var username = settings.twitter.userName;
       var hashTag = settings.twitter.hashTag;
       var type = settings.twitter.tweetType;
@@ -28,7 +52,7 @@
           var count = res.results.length;
           var key = Math.floor(Math.random() * count);
           tweet  = res.results[key];
-          $('.field.field-name-field-mode .field-label').text(tweet.text);    
+          $('.field.field-name-field-mode .field-label').text(tweet.text);
         }
       }
 
@@ -47,16 +71,4 @@
         console.log(res);
         console.log("ERROR");
       }
-    }
-  };
-  
-  var socket = new io.Socket(null, {port: 8080, rememberTransport: false});
-  socket.connect();
-  socket.on('message', function(obj){
-    console.log(arguments);
-  });
-  socket.on('connect', function(obj){ 
-    console.log(arguments)
-  });
-  
-})(jQuery);
+*/
