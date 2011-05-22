@@ -58,18 +58,16 @@ function tcd_add_tweets_json() {
   foreach ($data as $tweet) {
     dd($tweet_id);
     db_merge('tcd_tweets')
-      ->key(array('twitter_id' => $tweet['tweet_id']))
+      ->key(array(
+        'twitter_id' => $tweet['tweet_id'], 
+        'site_nid' => $tweet['site_id']
+      ))
       ->fields(array(
-          'screen_name' => $tweet['text'],
-          'created_time' => $tweet['created_at'] / 1000,
-          'text' => $tweet['text'],
+        'screen_name' => $tweet['text'],
+        'created_time' => $tweet['created_at'] / 1000,
+        'text' => $tweet['text'],
       ))
       ->execute();
-    foreach ($tweet['sites'] as $site_nid) {
-      db_merge('tcd_site_tweets')
-        ->key(array('twitter_id' => $tweet_id, 'site_nid' => $site_nid))
-        ->execute();
-    }
   }
   return drupal_json_encode(array('status' => 'cool'));
 }
@@ -80,9 +78,7 @@ function tcd_add_tweets_json() {
 function tcd_node_view($node, $view_mode, $langcode) {
   if ($node->type == 'site') {
     $tweets = db_query_range('SELECT tt.* FROM {tcd_tweets} tt 
-      INNER JOIN {tcd_site_tweets} tst ON tt.twitter_id = tst.twitter_id 
-      WHERE tst.site_nid = :nid 
-      ORDER BY tt.created_time DESC', 0, 100, array(':nid' => $node->nid))
+      WHERE tst.site_nid = :nid ORDER BY tt.created_time DESC', 0, 100, array(':nid' => $node->nid))
       ->fetchAllAssoc('twitter_id', PDO::FETCH_ASSOC);
 
     // Add some basic default settings. We should also add some validation since some of these fields aren't required.
@@ -91,6 +87,13 @@ function tcd_node_view($node, $view_mode, $langcode) {
     $type = $node->field_mode[LANGUAGE_NONE][0]['value'];
 
     drupal_add_js(array('twitter' => array('userName' => $user_name, 'hashTag' => $hash_tag, 'tweetType' => $type, 'tweets' => $tweets)), 'setting');
-    drupal_add_js(drupal_get_path('module', 'tcd') . '/tcd_tweets.js');    
+    drupal_add_js(drupal_get_path('module', 'tcd') . '/tcd_tweets.js');
   } 
+}
+
+/**
+ * Implement hook_node_delete().
+ */
+function tcd_node_delete($node) {
+  db_query('DELETE FROM {tcd_tweets} WHERE tst.site_nid = :nid', array(':nid' => $node->nid));
 }
