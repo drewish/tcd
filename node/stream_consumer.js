@@ -124,6 +124,8 @@ StreamConsumer.prototype = {
     this.sites_as_array().forEach(function(site){
       // includes test for hash tags
       if(site.is_valid(tweet_data)){
+        console.log("ADDING TWEET");
+        console.log(tweet_data);
         self.tweet_data.push(site.format_data(tweet_data))
       }
     })
