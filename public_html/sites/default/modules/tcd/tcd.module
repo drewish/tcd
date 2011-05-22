@@ -110,7 +110,11 @@ function tcd_node_view($node, $view_mode, $langcode) {
     $user_name = $node->field_twitter_user[LANGUAGE_NONE][0]['value'];
     $hash_tag = isset($node->field_twitter_tag[LANGUAGE_NONE][0]['value']) ? $node->field_twitter_tag[LANGUAGE_NONE][0]['value'] : '';
     $type = $node->field_mode[LANGUAGE_NONE][0]['value'];
-
+    foreach($tweets as $tweet) {
+      $node->tweet_field = $tweet;
+      // We only want the 1st tweet in the array
+      break;
+    }
     drupal_add_js(array('twitter' => array('userName' => $user_name, 'hashTag' => $hash_tag, 'tweetType' => $type, 'tweets' => $tweets)), 'setting');
     drupal_add_js(drupal_get_path('module', 'tcd') . '/tcd_tweets.js');
   } 
