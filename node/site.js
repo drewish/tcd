@@ -2,8 +2,6 @@
 var sys = require('sys'), 
   TwitterClient = require("./twitter_client").TwitterClient, 
   AddTweet = require("./add_tweet").AddTweet;
-  
-console.log(AddTweet.save);
 
 var Site = function(id, opts){
   opts = opts || {};
@@ -55,21 +53,22 @@ Site.prototype = {
   // check to see if a given tweet is valid for this site
   is_valid : function(tweet_data){
     // check to make sure we have the right screen name
-    if(this.screen_names.indexOf(tweet_data.screen_name) <= -1){
+    if(this.screen_names.indexOf(tweet_data.user.screen_name) <= -1){
+      console.log([this.screen_names, tweet_data.user.screen_name])
       return false;
     }
     // if we have a hash tag - test it here
     if(typeof(this.hash_tag == "string")){
       hash_tag = this.normalized_hash_tag();
       if(hash_tag.length > 0){
-        return new RegExp(" #" + hash_tag).test(tweet_data.text);
+        return new RegExp("(^| )#" + hash_tag + "( |$)").test(tweet_data.text);
       }
     }
     return true
   },
   // normalize hash tag by only including alphanumeric characters
   normalized_hash_tag : function(){
-    return this.hash_tag.replace(/[^a-z0-9_\-]/ig,'') + " ";
+    return this.hash_tag.replace(/[^a-z0-9_\-]/ig,'');
   }
 }
 exports.Site = Site;

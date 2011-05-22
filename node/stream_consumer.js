@@ -42,20 +42,18 @@ StreamConsumer.prototype = {
       stream.on('data', function (data) {
         // get some data
         if(data.text){
-          //try{
+          try{
             self.add_tweet(data);
           // handle this - for the time being at least we won't die
-          // }catch(e){
-          //   console.log(e);
-          // }
+          } catch(e){
+            console.log(e);
+          }
         }
       });
     });
   },
   stop_server : function(){
-    if(this.server){
-      
-    }
+    if(this.server){}
     return true;
   },
   // stop server and restart

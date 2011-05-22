@@ -1,29 +1,18 @@
-var sys = require('sys'), 
-  http = require('http'),
-  querystring = require("querystring");
+// require our StreamConsumer
+var sys = require("sys"), 
+  StreamConsumer = require("./stream_consumer").StreamConsumer,
+  PushSocket = require("./push_socket").PushSocket;
 
-var AddTweet = {
-  // wrapper save method - we use this in two places
-  save_tweet : function(tweet_data){
-    var post_data = querystring.stringify({json : JSON.stringify(tweet_data)});
-    var options = {
-      host : HOST,
-      path : "/api/add_tweets",
-      port : 80,
-      method : "POST",
-      headers: {  
-        'Content-Type': 'application/x-www-form-urlencoded',  
-        'Content-Length': post_data.length  
-      }
-    }
-    req = http.request(options,function(res){
-      res.on("data",function(data){
-        console.log("" + data);
-      });
-    });
-    req.write(post_data);
-    req.end();
-  }
-}
+// main method
+push_socket = new PushSocket();
+push_socket.main();
 
-exports.AddTweet = AddTweet;
+stream_consumer = new StreamConsumer(push_socket);
+stream_consumer.main();
+
+
+// handle SIGTERM
+process.on('exit', function(){
+  console.log("Shutting down....");
+  stream_consumer.exit();
+});
