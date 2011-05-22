@@ -632,7 +632,7 @@ h1#page-title {
 
 .page-home .content {text-align: center;}
 
-.page-home #edit-field-mode-und-last {margin-right: 9px;}
+.page-home #edit-field-mode-und-last {margin-right: 12px;}
 
 .node .content {
   font-size: 1.071em;
@@ -1803,7 +1803,7 @@ div.admin-panel .description {
 .page-home table .views-field-title {
   float:left;
   font-size:30px;
-  padding-right:20px;  
+  padding-left:20px;  
 }
 
 .page-home .views-field-text {
@@ -1823,11 +1823,12 @@ div.admin-panel .description {
   font-size:20px;
 } 
 
-.page-home .views-field-screen-name{ margin-top:10px; margin-left:135px; }
+.page-home .views-field-screen-name{ margin-top:10px; margin-left:-75px; font-family: MyriadPro; }
 .page-home .views-field-created-time {
   float: right;
   margin-right: 105px;
   margin-top:-21px;
+  font-family: MyriadPro;
 }
 
 .page-home .pane-views-tweets-block h2,
@@ -1850,3 +1851,5 @@ div.admin-panel .description {
   float: right;
   width: 45%;
 }
+
+.dashboard {display:none;}
