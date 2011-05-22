@@ -626,6 +626,8 @@ h1#page-title {
 
 .page-home .content {text-align: center;}
 
+.page-home #edit-field-mode-und-last {padding-right: 5px;}
+
 .node .content {
   font-size: 1.071em;
 }
