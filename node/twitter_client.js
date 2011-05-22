@@ -1,4 +1,4 @@
-twitter = require("twitter");
+var sys = require("sys"), twitter = require("twitter");
 // make this available externally
 exports.TwitterClient = new twitter({
     consumer_key: 'DRHqHFGQFeRKr9epTOT8Yg',

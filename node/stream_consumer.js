@@ -1,23 +1,19 @@
 var sys = require('sys'),
   Site = require('./site').Site,
-  TwitterClient = require('./twitter_client');
+  TwitterClient = require('./twitter_client').TwitterClient;
 
 var StreamConsumer = function(){};
 StreamConsumer.prototype = {
+  // map of user name to twitter id
+  user_ids : [],
   sites : {},
   /* Main method */
   main : function(){
+    var self = this;
     this.running = true;
     // set up the timer, we will check for new sites every 30 seconds
-    this.get_site_interval = setInterval(this.get_sites, 30000);
+    this.get_site_interval = setInterval(function(){self.get_sites()}, 30000);
     this.get_sites();
-    // hang out here until somebody kills us
-    while(this.running){}
-    
-    // when killed, remove the timer
-    removeInterval(this.get_site_interval);
-    // and gracefully stop the server
-    this.stop_server();
   },
   // method to exit gracefully
   exit : function(){
@@ -25,11 +21,15 @@ StreamConsumer.prototype = {
   },
   // start up the TwitterClient stream
   start_server : function(){
-    
-    this.server = TwitterClient.stream('statuses/sample', function(stream) {
+    var self = this;
+    console.log("starting Server");
+    this.server = TwitterClient.stream('user', {track : this.user_ids}, function(stream) {
       stream.on('data', function (data) {
         // get some data
-        sys.puts(sys.inspect(data));
+        console.log(sys.inspect(data));
+        if(data.text){
+          self.add_tweet(data);
+        }
       });
     });
   },
@@ -52,13 +52,48 @@ StreamConsumer.prototype = {
     //     restart_server = true;
     //   }
     // })
-    this.sites['a'] = new Site({last_modified : new Date(), screen_names : ['dlangevin']})
-    restart_server = true;
-    if(restart_server){
-      this.restart_server();
+    this.user_names_to_get = [];
+    if(this.user_ids.length == 0){
+      this.add_site(new Site({last_modified : new Date(), screen_names : ['dlangevin']}));
     }
+    this.get_user_ids_and_restart();
   },
-  add_site : function(){},
-  add_tweet : function(){}
+  get_user_ids_and_restart : function(){
+    var self = this;
+    this.user_names_to_get.forEach(function(name){
+      TwitterClient.get('/users/lookup.json', {screen_name : name}, function(data) {
+        if(data instanceof Array){
+          self.user_ids.push(data[0].id);
+        }
+        self.user_names_to_get.splice(self.user_names_to_get.indexOf(name));
+        if(self.user_names_to_get.length == 0){
+          self.restart_server();
+        }
+      });
+    });
+  },
+  // add the site to this
+  add_site : function(site){
+    var self = this;
+    this.sites[site.id] = site;
+    console.log(site.screen_names);
+    site.screen_names.forEach(function(name){
+      if(self.user_names_to_get.indexOf(name) == -1){
+        self.user_names_to_get.push(name);
+      }
+    });
+  },
+  // helper method
+  sites_as_array : function(){
+    var sites = [];
+    for(var i in this.sites){
+      sites.push(this.sites[i]);
+    }
+    return sites;
+  },
+  add_tweet : function(tweet_data){
+    console.log(this.sites_as_array());
+    
+  }
 }
 exports.StreamConsumer = StreamConsumer;
