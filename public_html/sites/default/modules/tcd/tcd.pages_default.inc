@@ -18,6 +18,8 @@ function tcd_default_page_manager_pages() {
   $page->path = 'home';
   $page->access = array(
     'logic' => 'and',
+    'type' => 'none',
+    'settings' => NULL,
   );
   $page->menu = array(
     'type' => 'none',
