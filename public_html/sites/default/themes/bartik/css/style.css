@@ -981,37 +981,26 @@ ul.links {
 .tabs ul.primary {
   padding: 0 3px 0 0;
   margin: 0;
-  overflow: hidden;
   border: none;
 }
 .tabs ul.primary li {
   display: block;
-  float: left; /* LTR */
+  float: right; /* LTR */
   vertical-align: bottom;
-  margin: 0 5px 0 250px; /* LTR */
+  margin: 0 220px 0 0; /* LTR */
 }
 .tabs ul.primary li.active a {
   border-bottom: 1px solid #ffffff;
 }
 .tabs ul.primary li a {
   color: #000;
-  background-color: #ededed;
   height: 1.8em;
-  line-height: 1.9;
   display: block;
   font-size: 0.929em;
   float: left; /* not LTR */
-  padding: 0 10px 3px;
+  padding: 3px 10px;
   margin: 0;
-  text-shadow: 0 1px 0 #fff;
-  -khtml-border-radius-topleft: 6px;
-  -moz-border-radius-topleft: 6px;
-  -webkit-border-top-left-radius: 6px;
-  border-top-left-radius: 6px;
-  -khtml-border-radius-topright: 6px;
-  -moz-border-radius-topright: 6px;
-  -webkit-border-top-right-radius: 6px;
-  border-top-right-radius: 6px;
+  opacity:0;
 }
 .tabs ul.primary li.active a {
   background-color: #ffffff;
@@ -1439,6 +1428,7 @@ html.js input.throbbing {
   margin-bottom: 0.4em;
 }
 #edit-actions input {
+  margin-left:1.1em;
   margin-right: 0.6em; /* LTR */
 }
 
@@ -1680,7 +1670,7 @@ div.admin-panel .description {
 
 .page-user label {display:none; }
 .page-user .form-item-name {padding-top:100px;}
-.page-user #edit-submit {margin-top:1em;}
+.page-user #edit-submit {margin-top:-1em;}
 
 .page-user .form-item,
 .page-user .form-actions{
@@ -1712,7 +1702,7 @@ div.admin-panel .description {
 }
 
 .page-node #content {
-    background: url("../images/signup_signin_bg.jpg") no-repeat scroll -105px -39px transparent;
+    background: url("../images/signup_signin_bg.jpg") no-repeat scroll -105px 10px transparent;
     display: block;
     height: 988px;
     margin: 0 auto;
