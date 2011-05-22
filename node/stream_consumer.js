@@ -8,7 +8,9 @@ var sys = require('sys'),
   http = require("http"),
   querystring = require("querystring");
 
-var StreamConsumer = function(){};
+var StreamConsumer = function(push_socket){
+  this.push_socket = push_socket;
+};
 StreamConsumer.prototype = {
   // map of user name to twitter id
   user_ids : [],
@@ -35,7 +37,7 @@ StreamConsumer.prototype = {
   start_server : function(){
     var self = this;
     console.log("Starting Server with " + this.user_ids.join(", "));
-    this.server = TwitterClient.stream('user', {track : this.user_ids}, function(stream) {
+    this.server = TwitterClient.stream('user', {track : this.user_ids, with : "user"}, function(stream) {
       stream.on('data', function (data) {
         // get some data
         if(data.text){
@@ -55,10 +57,12 @@ StreamConsumer.prototype = {
     }
     return true;
   },
+  // stop server and restart
   restart_server : function(){
     this.stop_server();
     this.start_server();
   },
+  // pull in a list of sites
   get_sites : function(){
     var self = this;
     options = {
@@ -134,6 +138,9 @@ StreamConsumer.prototype = {
       });
       req.write(post_data);
       req.end();
+      // and send this to any currently connected clients
+      this.push_socket.push_data(post_data);
+      
       this.tweet_data = [];
     }
   },

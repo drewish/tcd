@@ -4,8 +4,12 @@ var sys = require("sys"),
   PushSocket = require("./push_socket").PushSocket;
 
 // main method
-stream_consumer = new StreamConsumer().main();
-push_socket = new PushSocket().main();
+push_socket = new PushSocket();
+push_socket.main();
+
+stream_consumer = new StreamConsumer(push_socket);
+stream_consumer.main();
+
 
 // handle SIGTERM
 process.on('exit', function(){
