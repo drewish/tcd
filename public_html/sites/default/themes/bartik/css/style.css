@@ -622,6 +622,10 @@ h1#page-title {
   font-size: 1.429em;
   line-height: 1.4;
 }
+.page-home #content h2 {text-align: center;}
+
+.page-home .content {text-align: center;}
+
 .node .content {
   font-size: 1.071em;
 }
