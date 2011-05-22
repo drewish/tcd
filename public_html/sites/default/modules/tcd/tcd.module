@@ -6,6 +6,52 @@
 
 include_once('tcd.features.inc');
 
+
+/**
+ * Implement hook_node_view().
+ */
+function tcd_menu() {
+  $items['api/follow'] = array(
+    'page callback' => 'tcd_follow_json',
+    'delivery callback' => 'tcd_ajax_deliver',
+    'access callback' => true,
+  );
+  $items['api/add_tweets'] = array(
+    'page callback' => 'tcd_add_tweets_json',
+    'delivery callback' => 'tcd_ajax_deliver',
+    'access callback' => true,
+  );
+  return $items;
+}
+
+/**
+ * Custom delivery callback.
+ */
+function tcd_ajax_deliver($json) {
+  if (is_null(drupal_get_http_header('Content-Type'))) {
+    drupal_add_http_header('Content-Type', 'application/json; charset=utf-8');
+  }
+  print $json;
+  ajax_footer();
+}
+
+function tcd_follow_json() {
+  $follows = array();
+  $last_changed = 0;
+  foreach (node_load_multiple(array(), array('type' => 'site')) as $node) {
+    $last_changed = max($node->changed, $last_changed);
+    $follows[$node->nid] = preg_split("/[\s,]+/", $node->field_twitter_user['und'][0]['value']);
+  }
+  return drupal_json_encode(array(
+    'last-modified' => $last_changed,
+    'sites' => $follows,
+  ));
+}
+
+function tcd_add_tweets_json() {
+  return drupal_json_encode($_POST);
+}
+
 /**
  * Implement hook_node_view().
  */
