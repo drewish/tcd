@@ -33,7 +33,7 @@ PushSocket.prototype = {
   },
   // we have some new data! let's tell everyone!
   push_data : function(data){
-    this.clients.forEach(function(client){
+    this.active_clients.forEach(function(client){
       client.broadcast(data);
     })
   }
