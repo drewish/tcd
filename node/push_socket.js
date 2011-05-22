@@ -34,7 +34,7 @@ PushSocket.prototype = {
   // we have some new data! let's tell everyone!
   push_data : function(data){
     this.active_clients.forEach(function(client){
-      client.broadcast(data);
+      client.send({data : data});
     })
   }
 }
