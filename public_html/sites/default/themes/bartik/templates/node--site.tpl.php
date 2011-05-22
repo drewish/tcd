@@ -9,7 +9,7 @@
     </h2>
   <?php endif; ?>
 
-  <div class="tweet-text <?php print $tweet_classes; ?>"><?php print check_plain($node->tweet_field['text']);?></div>
+  <div class="tweet-text <?php print $tweet_classes; ?>"><p><?php print check_plain($node->tweet_field['text']);?></p></div>
   
   <div class="share-links">
     <div class="twitter-link"><a href="http://twitter.com/share" class="twitter-share-button" data-url="<?php print url($node_url, array('absolute' => TRUE)); ?>" data-count="vertical" data-text="<?php print $title; ?>">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>
