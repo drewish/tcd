@@ -54,22 +54,47 @@ function tcd_follow_json() {
  */
 function tcd_add_tweets_json() {
   $data = drupal_json_decode($_POST['json']);
-  dd($data);
   foreach ($data as $tweet) {
-    dd($tweet_id);
     db_merge('tcd_tweets')
       ->key(array(
         'twitter_id' => $tweet['tweet_id'], 
         'site_nid' => $tweet['site_id']
       ))
       ->fields(array(
-        'screen_name' => $tweet['text'],
+        'screen_name' => $tweet['screen_name'],
         'created_time' => $tweet['created_at'] / 1000,
         'text' => $tweet['text'],
       ))
       ->execute();
   }
-  return drupal_json_encode(array('status' => 'cool'));
+  return drupal_json_encode(array('status' => 'cool', 'number' => count($data)));
+}
+
+function tcd_form_site_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['field_color_background']['#attached'] = array(
+    // Add Farbtastic color picker.
+    'library' => array(
+      array('system', 'farbtastic'),
+    ),
+    // // Add custom CSS.
+    // 'css' => array(
+    //   $base . '/color.css' => array(),
+    // ),
+    // Add custom JavaScript.
+    'js' => array(
+      drupal_get_path('module', 'tcd') . '/tcd_edit.js',
+    //   array(
+    //     'data' => array(
+    //       'color' => array(
+    //         'reference' => color_get_palette($theme, TRUE),
+    //         'schemes' => $schemes,
+    //       ),
+    //       'gradients' => $info['gradients'],
+    //     ),
+    //     'type' => 'setting',
+    //   ),
+    ),
+  );
 }
 
 /**

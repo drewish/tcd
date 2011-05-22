@@ -6,7 +6,8 @@ var sys = require('sys'),
   Site = require('./site').Site,
   TwitterClient = require('./twitter_client').TwitterClient,
   http = require("http"),
-  querystring = require("querystring");
+  querystring = require("querystring"),
+  AddTweet = require("./add_tweet").AddTweet;
 
 var StreamConsumer = function(push_socket){
   this.push_socket = push_socket;
@@ -67,14 +68,13 @@ StreamConsumer.prototype = {
     var self = this;
     options = {
       host : HOST,
-      path : "/?q=api/follow",
+      path : "/api/follow",
       port : 80
     }
     http.get(options, function(res){
       res.on("data",function(data){
         self.user_names_to_get = [];
         data = JSON.parse("" + data);
-        console.log("data");
         for(var id in data){
           if(typeof(self.sites[id]) == "undefined" || self.sites[id].last_modified < data.last_modified){
             self.add_site(new Site(id, data[id]))
@@ -91,7 +91,6 @@ StreamConsumer.prototype = {
         if(data instanceof Array){
           self.user_ids.push(data[0].id);
         }
-        console.log(data);
         self.user_names_to_get.splice(self.user_names_to_get.indexOf(name));
         if(self.user_names_to_get.length == 0){
           self.restart_server();
@@ -120,44 +119,22 @@ StreamConsumer.prototype = {
   // add a tweet to the 
   add_tweet : function(tweet_data){
     var self = this;
-    this.tweet_data.push(this.format_data(tweet_data));
-    if(this.tweet_data.length > this.max_queue_length){
-      var post_data = querystring.stringify({json : JSON.stringify(this.tweet_data)});
-      var options = {
-        host : HOST,
-        path : "?q=api/add_tweets",
-        port : 80,
-        method : "POST",
-        headers: {  
-          'Content-Type': 'application/x-www-form-urlencoded',  
-          'Content-Length': post_data.length  
-        }
+    
+    this.sites_as_array().forEach(function(site){
+      // includes test for hash tags
+      if(site.is_valid(tweet_data)){
+        self.tweet_data.push(site.format_data(tweet_data))
       }
-      req = http.request(options,function(res){
-        res.on("data",function(data){
-          console.log("" + data);
-        });
-      });
-      req.write(post_data);
-      req.end();
+    })
+    
+    if(this.tweet_data.length > this.max_queue_length){
+      // persist to mysql
+      AddTweet.save_tweet(this.tweet_data);
       // and send this to any currently connected clients
-      this.push_socket.push_data(post_data);
-      
+      this.push_socket.push_data(this.tweet_data);
+    
       this.tweet_data = [];
     }
-  },
-  format_data : function(tweet_data){
-    var data = {};
-    data.text = tweet_data.text;
-    data.tweet_id = tweet_data.id_str;
-    data.created_at = new Date(tweet_data.created_at).getTime();
-    data.screen_name = tweet_data.user.screen_name;
-    data.site_ids = this.sites_as_array().filter(function(site){
-        return site.screen_names.indexOf(data.screen_name) > -1;
-      }).map(function(site){
-        return site.id
-      });
-    return data;
   }
 }
 exports.StreamConsumer = StreamConsumer;

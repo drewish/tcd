@@ -1,5 +1,5 @@
 (function($){
-  Drupal.behaviors.exampleModule = {
+  Drupal.behaviors.tcdTweets = {
     attach: function (context, settings) {
       var username = settings.twitter.userName;
       var hashTag = settings.twitter.hashTag;
